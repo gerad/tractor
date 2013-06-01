@@ -12,8 +12,6 @@
   IBOutlet NSMenuItem *separatorMenuItem;
   IBOutlet NSMenuItem *noProjectMenuItem;
 
-  IBOutlet NSSearchField *searchField;
-
   IBOutlet NSOutlineView *itemsOutlineView;
 
   AddProjectSheetController *addProjectSheetController;

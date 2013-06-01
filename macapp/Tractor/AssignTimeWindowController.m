@@ -44,7 +44,8 @@
 
 - (IBAction)searchItems:(id)sender
 {
-//  [self filterItemsTreeContent];
+  NSSearchField *searchField = sender;
+  [[self itemsOutlineRootNode] setFilter:[searchField stringValue]];
 }
 
 #pragma mark - NSPopupButton

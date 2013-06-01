@@ -90,6 +90,15 @@
   return [[ItemsOutlineLeafNode alloc] init];
 }
 
+#pragma mark - Filter Support
+
+- (void)setFilter:(NSString *)filter
+{
+  [super setFilter:filter];
+  [self updateProject];
+  [self updateDuration];
+}
+
 #pragma mark - Helpers
 
 - (NSString *)appName
@@ -129,7 +138,6 @@
   _durationNeedsUpdate = NO;
   [self setDuration:duration];
 }
-
 
 - (void)observeProjectChangeForItem:(Item *)item
 {

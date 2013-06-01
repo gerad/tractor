@@ -8,7 +8,6 @@
   return [[AppGroupTreeNode alloc] init];
 }
 
-
 - (void)sort
 {
   NSSortDescriptor *descendingDuration = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO];

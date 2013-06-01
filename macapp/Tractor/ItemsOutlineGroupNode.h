@@ -7,10 +7,12 @@
 }
 
 @property (nonatomic, readonly) BOOL isLeaf;
-@property (nonatomic, readonly) NSArray *visibleChildNodes;
+@property (nonatomic, retain) NSArray *visibleChildNodes;
 @property (nonatomic, retain) NSString *filter;
 
 - (void)addItem:(Item *)item;
 - (void)addItems:(NSArray *)items;
+
+- (BOOL)isFiltered;
 
 @end

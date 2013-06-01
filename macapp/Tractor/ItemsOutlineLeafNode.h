@@ -4,5 +4,6 @@
 @interface ItemsOutlineLeafNode : NSObject<ItemsOutlineTreeNode>
 
 @property (nonatomic, retain) Item *item;
+@property (nonatomic, retain) NSString *filter;
 
 @end

@@ -9,7 +9,6 @@
 {
   if (self = [super init]) {
     _childNodes = [[NSMutableArray alloc] init];
-    _visibleChildNodes = [[NSMutableArray alloc] init];
   }
 
   return self;
@@ -19,7 +18,7 @@
 {
   [_childNodes release];
   [_visibleChildNodes release];
-  [self setFilter:nil];
+  [_filter release];
   [super dealloc];
 }
 
@@ -27,7 +26,8 @@
 
 - (NSArray *)visibleChildNodes
 {
-  return _childNodes;
+  if (!_visibleChildNodes) { [self updateVisibleChildNodes]; }
+  return _visibleChildNodes;
 }
 
 #pragma mark - Item Methods
@@ -52,6 +52,22 @@
   }
 }
 
+#pragma mark - Filter Methods
+
+- (void)setFilter:(NSString *)filter
+{
+  [[self filter] autorelease];
+  _filter = [filter retain];
+  [self updateVisibleChildNodes];
+}
+
+- (BOOL)isFiltered
+{
+  return [[self visibleChildNodes] count] == 0;
+}
+
+#pragma mark - Helpers
+
 - (id)childNodeForItem:(Item *)item;
 {
   id<ItemsOutlineTreeNode> ret = nil;
@@ -71,5 +87,18 @@
   return nil; // sublcasses should implement
 }
 
+- (void)updateVisibleChildNodes
+{
+  NSMutableArray *visibleChildNodes = [NSMutableArray array];
+
+  for (id<ItemsOutlineTreeNode> node in _childNodes) {
+    [node setFilter:[self filter]];
+    if (![node isFiltered]) {
+      [visibleChildNodes addObject:node];
+    }
+  }
+
+  [self setVisibleChildNodes:visibleChildNodes];
+}
 
 @end

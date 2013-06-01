@@ -25,4 +25,9 @@
 - (BOOL)acceptsItem:(Item *)item;
 - (void)addItem:(Item *)item;
 
+#pragma mark - Filter Support
+
+- (void)setFilter:(NSString *)filter;
+- (BOOL)isFiltered;
+
 @end

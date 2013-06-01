@@ -3,6 +3,15 @@
 
 @implementation ItemsOutlineLeafNode
 
+#pragma mark - Lifecycle
+
+- (void)dealloc
+{
+  [self setFilter:nil];
+  [self setItem:nil];
+  [super dealloc];
+}
+
 #pragma mark - Properties
 
 - (NSString *)name
@@ -56,7 +65,7 @@
   [[self item] setProject:project];
 }
 
-#pragma mark - Tree Suppoert
+#pragma mark - Tree Support
 
 - (BOOL)acceptsItem:(Item *)item
 {
@@ -67,6 +76,21 @@
 {
   assert(![self item]);
   [self setItem:item];
+}
+
+#pragma mark - Filter Support
+
+- (BOOL)isFiltered
+{
+  NSString *filter = [self filter];
+  BOOL isFiltered = false;
+
+  if ([filter length] > 0) {
+    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"anything CONTAINS[cd] %@", filter];
+    isFiltered = ![[self item] matchesPredicate:filterPredicate];
+  }
+
+  return isFiltered;
 }
 
 #pragma mark - Helpers
