@@ -45,15 +45,21 @@ static NSString *JSONDate(NSDate *date);
   return dict;
 }
 
+- (NSDictionary *)matchDictionary
+{
+  NSDictionary *matchDictionary = [NSMutableDictionary dictionaryWithDictionary:[self infoDictionary]];
+  [matchDictionary setValue:NULLNIL([self app]) forKey:@"app"];
+  return matchDictionary;
+}
+
 - (void)applyRules:(NSArray *)rules
 {
   Project *ruleProject = nil;
-  NSDictionary *matchDictionary = [NSMutableDictionary dictionaryWithDictionary:[self infoDictionary]];
-  [matchDictionary setValue:NULLNIL([self app]) forKey:@"app"];
+  NSDictionary *matchDictionary = [self matchDictionary];
   NSArray *keyPaths = [matchDictionary allKeys];
 
   for (Rule *rule in rules) {
-    NSPredicate *predicate = [rule expandedPredicate:keyPaths]; //[NSPredicate predicateWithFormat:@"app CONTAINS %@", @"o"];
+    NSPredicate *predicate = [rule expandedPredicate:keyPaths];
     if ([predicate evaluateWithObject:matchDictionary]) {
       ruleProject = [rule project];
       break;
@@ -65,6 +71,15 @@ static NSString *JSONDate(NSDate *date);
   }
 }
 
+- (BOOL)matchesPredicate:(NSPredicate *)predicate
+{
+  NSDictionary *matchDictionary = [self matchDictionary];
+  NSArray *keyPaths = [matchDictionary allKeys];
+  NSPredicate *expandedPredicate = [Rule expandPredicate:predicate withKeyPaths:keyPaths];
+
+  return [expandedPredicate evaluateWithObject:matchDictionary];
+}
+
 - (NSString *)description
 {
   return [NSString stringWithFormat:@"%@ (%@ - %@)", [self app], [self start], [self end]];
@@ -73,53 +88,6 @@ static NSString *JSONDate(NSDate *date);
 - (NSTimeInterval)duration
 {
   return [[self end] timeIntervalSinceDate:[self start]];
-}
-
-- (NSString *)durationDescription
-{
-  return NSTimeIntervalDescription([self duration]);
-}
-
-- (NSString *)startString
-{
-  return [NSDateFormatter localizedStringFromDate:[self start]
-                                        dateStyle:NSDateFormatterNoStyle
-                                        timeStyle:NSDateFormatterShortStyle];
-}
-
-- (NSString *)summary
-{
-  NSString *summary = @"";
-  NSString *val = nil;
-  
-  NSDictionary *info = [self infoDictionary];
-  
-  // start / duration
-  summary = [summary stringByAppendingFormat:@"%@ - %@\n", [self startString], [self durationDescription]];
-
-  // name
-  if ((val = [self app]) && ([val length] > 0)) {
-    summary = [summary stringByAppendingFormat:@"%@\n", val];
-  } else {
-    summary = [summary stringByAppendingString:@"Away"];
-  }
-  
-  // title
-  if (info && (val = [info objectForKey:@"title"]) && ([val length] > 0)) {
-    summary = [summary stringByAppendingFormat:@"\nTitle: %@", val];
-  }
-
-  // path
-  if (info && (val = [info objectForKey:@"path"]) && ([val length] > 0)) {
-    summary = [summary stringByAppendingFormat:@"\nFile: %@", val];
-  }
-
-  // url
-  if (info && (val = [info objectForKey:@"url"]) && ([val length] > 0)) {
-    summary = [summary stringByAppendingFormat:@"\nURL: %@", val];
-  }
-  
-  return summary;
 }
 
 - (NSString *)title

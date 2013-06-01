@@ -25,23 +25,20 @@
 - (NSPredicate *)expandedPredicate:(NSArray *)keyPaths
 {
   NSPredicate *predicate = [self predicate];
-
-  predicate = [self expandPredicate:predicate withKeyPaths:keyPaths];
-
-  return predicate;
+  return [Rule expandPredicate:predicate withKeyPaths:keyPaths];
 }
 
-- (NSPredicate *)expandPredicate:(NSPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
++ (NSPredicate *)expandPredicate:(NSPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
 {
   if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
-    predicate = [self expandComparisonPredicate:(NSComparisonPredicate *)predicate withKeyPaths:keyPaths];
+    predicate = [Rule expandComparisonPredicate:(NSComparisonPredicate *)predicate withKeyPaths:keyPaths];
   } else if ([predicate isKindOfClass:[NSCompoundPredicate class]]) {
-    predicate = [self expandCompoundPredicate:(NSCompoundPredicate *)predicate withKeyPaths:keyPaths];
+    predicate = [Rule expandCompoundPredicate:(NSCompoundPredicate *)predicate withKeyPaths:keyPaths];
   }
   return predicate;
 }
 
-- (NSPredicate *)expandComparisonPredicate:(NSComparisonPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
++ (NSPredicate *)expandComparisonPredicate:(NSComparisonPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
 {
   NSPredicate *ret = nil;
   NSExpression *leftExpression = [predicate leftExpression];
@@ -56,19 +53,19 @@
   if ([leftValue isEqualToString:@"anything"]) {
     NSMutableArray *subpredicates = [NSMutableArray arrayWithCapacity:[keyPaths count]];
     for (NSString *keyPath in keyPaths) {
-      NSPredicate *subpredicate = [self predicateFromComparisonPredicate:predicate withLeftExpressionKeyPath:keyPath];
+      NSPredicate *subpredicate = [Rule predicateFromComparisonPredicate:predicate withLeftExpressionKeyPath:keyPath];
       [subpredicates addObject:subpredicate];
     }
 
     ret = [NSCompoundPredicate orPredicateWithSubpredicates:subpredicates];
   } else {
-    ret = [self predicateFromComparisonPredicate:predicate withLeftExpressionKeyPath:leftValue];
+    ret = [Rule predicateFromComparisonPredicate:predicate withLeftExpressionKeyPath:leftValue];
   }
 
   return ret;
 }
 
-- (NSPredicate *)predicateFromComparisonPredicate:(NSComparisonPredicate *)predicate withLeftExpressionKeyPath:keyPath
++ (NSPredicate *)predicateFromComparisonPredicate:(NSComparisonPredicate *)predicate withLeftExpressionKeyPath:keyPath
 {
   NSExpression *leftExpression = [NSExpression expressionForKeyPath:keyPath];
 
@@ -79,13 +76,13 @@
                                                     options:[predicate options]];
 }
 
-- (NSPredicate *)expandCompoundPredicate:(NSCompoundPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
++ (NSPredicate *)expandCompoundPredicate:(NSCompoundPredicate *)predicate withKeyPaths:(NSArray *)keyPaths
 {
   NSArray *subpredicates = [predicate subpredicates];
   NSMutableArray *expandedSubpredicates = [NSMutableArray arrayWithCapacity:[subpredicates count]];
 
   for (NSPredicate *predicate in subpredicates) {
-    [expandedSubpredicates addObject:[self expandPredicate:predicate withKeyPaths:keyPaths]];
+    [expandedSubpredicates addObject:[Rule expandPredicate:predicate withKeyPaths:keyPaths]];
   }
 
   NSCompoundPredicateType predicateType = [predicate compoundPredicateType];

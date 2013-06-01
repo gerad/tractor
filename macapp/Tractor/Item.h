@@ -18,11 +18,10 @@
 
 - (BOOL)matchesApp:(NSString *)app andInfoData:(NSData *)infoData;
 - (NSDictionary *)JSONDictionary;
-- (NSString *)durationDescription;
-- (NSString *)summary;
-- (NSString *)startString;
 - (NSString *)fileName;
 
 - (void)applyRules:(NSArray *)rules;
+
+- (BOOL)matchesPredicate:(NSPredicate *)predicate;
 
 @end

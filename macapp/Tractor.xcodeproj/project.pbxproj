@@ -26,12 +26,12 @@
 		F237D21D1729FC0D005C1296 /* NSDate+DayExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F237D21C1729FC0D005C1296 /* NSDate+DayExtensions.m */; };
 		F25410221741B9A900ACF5A3 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F25410201741B9A800ACF5A3 /* PreferencesWindowController.m */; };
 		F25410231741B9A900ACF5A3 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25410211741B9A800ACF5A3 /* PreferencesWindow.xib */; };
-		F26CF31117306961007E92F5 /* AppGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CF31017306961007E92F5 /* AppGroup.m */; };
 		F26CF31317306FF9007E92F5 /* NSTimeIntervalDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CF31217306FF9007E92F5 /* NSTimeIntervalDescription.m */; };
-		F29184471753C0AD00C61AF5 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29184461753C0AD00C61AF5 /* ItemViewController.m */; };
+		F29184471753C0AD00C61AF5 /* ItemsOutlineLeafNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F29184461753C0AD00C61AF5 /* ItemsOutlineLeafNode.m */; };
 		F291844B1754198F00C61AF5 /* ProjectTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F291844A1754198F00C61AF5 /* ProjectTextFieldCell.m */; };
-		F291844E17543CD700C61AF5 /* AppGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F291844D17543CD700C61AF5 /* AppGroupViewController.m */; };
-		F2918451175519AA00C61AF5 /* ItemsOutlineRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2918450175519AA00C61AF5 /* ItemsOutlineRowViewController.m */; };
+		F291844E17543CD700C61AF5 /* AppGroupTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F291844D17543CD700C61AF5 /* AppGroupTreeNode.m */; };
+		F292DD4217592E4E00E741C0 /* ItemsOutlineRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F292DD4117592E4E00E741C0 /* ItemsOutlineRootNode.m */; };
+		F292DD46175938F500E741C0 /* ItemsOutlineGroupNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F292DD45175938F500E741C0 /* ItemsOutlineGroupNode.m */; };
 		F29409DE168744FF00A80E04 /* ManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F29409DD168744FF00A80E04 /* ManagedObjectContext.m */; };
 		F2A0B49C14207CA000F07F32 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A0B49B14207CA000F07F32 /* Cocoa.framework */; };
 		F2A0B4A614207CA000F07F32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2A0B4A414207CA000F07F32 /* InfoPlist.strings */; };
@@ -104,19 +104,20 @@
 		F254101F1741B9A800ACF5A3 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		F25410201741B9A800ACF5A3 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		F25410211741B9A800ACF5A3 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
-		F26CF30F17306961007E92F5 /* AppGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGroup.h; sourceTree = "<group>"; };
-		F26CF31017306961007E92F5 /* AppGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGroup.m; sourceTree = "<group>"; };
 		F26CF31217306FF9007E92F5 /* NSTimeIntervalDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTimeIntervalDescription.m; sourceTree = "<group>"; };
 		F26CF31417307075007E92F5 /* NSTimeIntervalDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTimeIntervalDescription.h; sourceTree = "<group>"; };
 		F29184441750222400C61AF5 /* AddProjectSheetControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddProjectSheetControllerDelegate.h; sourceTree = "<group>"; };
-		F29184451753C0AD00C61AF5 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
-		F29184461753C0AD00C61AF5 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
+		F29184451753C0AD00C61AF5 /* ItemsOutlineLeafNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOutlineLeafNode.h; sourceTree = "<group>"; };
+		F29184461753C0AD00C61AF5 /* ItemsOutlineLeafNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOutlineLeafNode.m; sourceTree = "<group>"; };
 		F29184491754198F00C61AF5 /* ProjectTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTextFieldCell.h; sourceTree = "<group>"; };
 		F291844A1754198F00C61AF5 /* ProjectTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTextFieldCell.m; sourceTree = "<group>"; };
-		F291844C17543CD700C61AF5 /* AppGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGroupViewController.h; sourceTree = "<group>"; };
-		F291844D17543CD700C61AF5 /* AppGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGroupViewController.m; sourceTree = "<group>"; };
-		F291844F175519AA00C61AF5 /* ItemsOutlineRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOutlineRowViewController.h; sourceTree = "<group>"; };
-		F2918450175519AA00C61AF5 /* ItemsOutlineRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOutlineRowViewController.m; sourceTree = "<group>"; };
+		F291844C17543CD700C61AF5 /* AppGroupTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGroupTreeNode.h; sourceTree = "<group>"; };
+		F291844D17543CD700C61AF5 /* AppGroupTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGroupTreeNode.m; sourceTree = "<group>"; };
+		F292DD4017592E4E00E741C0 /* ItemsOutlineRootNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOutlineRootNode.h; sourceTree = "<group>"; };
+		F292DD4117592E4E00E741C0 /* ItemsOutlineRootNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOutlineRootNode.m; sourceTree = "<group>"; };
+		F292DD431759356900E741C0 /* ItemsOutlineTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemsOutlineTreeNode.h; sourceTree = "<group>"; };
+		F292DD44175938F500E741C0 /* ItemsOutlineGroupNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOutlineGroupNode.h; sourceTree = "<group>"; };
+		F292DD45175938F500E741C0 /* ItemsOutlineGroupNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOutlineGroupNode.m; sourceTree = "<group>"; };
 		F29409DC168744FF00A80E04 /* ManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectContext.h; sourceTree = "<group>"; };
 		F29409DD168744FF00A80E04 /* ManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectContext.m; sourceTree = "<group>"; };
 		F2A0B49714207CA000F07F32 /* Tractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,8 +200,6 @@
 				F2EF60B1142AA4A0009FC44C /* Item.m */,
 				F203730D142CCC730053C4A5 /* Items.h */,
 				F203730E142CCC730053C4A5 /* Items.m */,
-				F26CF30F17306961007E92F5 /* AppGroup.h */,
-				F26CF31017306961007E92F5 /* AppGroup.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -258,12 +257,7 @@
 				F2FD6318174D6F8800DB290D /* DurationFormatter.m */,
 				F2E654451728AE5F00FC7AFF /* AssignTimeWindowController.h */,
 				F2E654461728AE5F00FC7AFF /* AssignTimeWindowController.m */,
-				F291844F175519AA00C61AF5 /* ItemsOutlineRowViewController.h */,
-				F2918450175519AA00C61AF5 /* ItemsOutlineRowViewController.m */,
-				F29184451753C0AD00C61AF5 /* ItemViewController.h */,
-				F29184461753C0AD00C61AF5 /* ItemViewController.m */,
-				F291844C17543CD700C61AF5 /* AppGroupViewController.h */,
-				F291844D17543CD700C61AF5 /* AppGroupViewController.m */,
+				F292DD3F1758558E00E741C0 /* ItemsOutline */,
 			);
 			name = AssignTimeWindow;
 			sourceTree = "<group>";
@@ -309,6 +303,22 @@
 				F20B42B417459209006110C8 /* AddRuleSheet.xib */,
 			);
 			name = PreferencesWindow;
+			sourceTree = "<group>";
+		};
+		F292DD3F1758558E00E741C0 /* ItemsOutline */ = {
+			isa = PBXGroup;
+			children = (
+				F292DD431759356900E741C0 /* ItemsOutlineTreeNode.h */,
+				F292DD44175938F500E741C0 /* ItemsOutlineGroupNode.h */,
+				F292DD45175938F500E741C0 /* ItemsOutlineGroupNode.m */,
+				F292DD4017592E4E00E741C0 /* ItemsOutlineRootNode.h */,
+				F292DD4117592E4E00E741C0 /* ItemsOutlineRootNode.m */,
+				F291844C17543CD700C61AF5 /* AppGroupTreeNode.h */,
+				F291844D17543CD700C61AF5 /* AppGroupTreeNode.m */,
+				F29184451753C0AD00C61AF5 /* ItemsOutlineLeafNode.h */,
+				F29184461753C0AD00C61AF5 /* ItemsOutlineLeafNode.m */,
+			);
+			name = ItemsOutline;
 			sourceTree = "<group>";
 		};
 		F2A0B48C14207CA000F07F32 = {
@@ -549,7 +559,6 @@
 				F29409DE168744FF00A80E04 /* ManagedObjectContext.m in Sources */,
 				F2E654481728AE5F00FC7AFF /* AssignTimeWindowController.m in Sources */,
 				F237D21D1729FC0D005C1296 /* NSDate+DayExtensions.m in Sources */,
-				F26CF31117306961007E92F5 /* AppGroup.m in Sources */,
 				F26CF31317306FF9007E92F5 /* NSTimeIntervalDescription.m in Sources */,
 				F2E1A6181731E88400C3E5B8 /* AddProjectSheetController.m in Sources */,
 				F212A5F917383270000220A5 /* SheetWindow.m in Sources */,
@@ -564,10 +573,11 @@
 				F2AC0543174A84850028CD7F /* Rules.m in Sources */,
 				F2FD6319174D6F8800DB290D /* DurationFormatter.m in Sources */,
 				F2BD8AA4174E9D9500B10731 /* ItemFormatter.m in Sources */,
-				F29184471753C0AD00C61AF5 /* ItemViewController.m in Sources */,
+				F29184471753C0AD00C61AF5 /* ItemsOutlineLeafNode.m in Sources */,
 				F291844B1754198F00C61AF5 /* ProjectTextFieldCell.m in Sources */,
-				F291844E17543CD700C61AF5 /* AppGroupViewController.m in Sources */,
-				F2918451175519AA00C61AF5 /* ItemsOutlineRowViewController.m in Sources */,
+				F291844E17543CD700C61AF5 /* AppGroupTreeNode.m in Sources */,
+				F292DD4217592E4E00E741C0 /* ItemsOutlineRootNode.m in Sources */,
+				F292DD46175938F500E741C0 /* ItemsOutlineGroupNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,7 @@
 #import "AssignTimeWindowController.h"
-#import "AppGroup.h"
-#import "ItemsOutlineRowViewController.h"
-#import "ItemViewController.h"
-#import "AppGroupViewController.h"
+#import "ItemsOutlineTreeNode.h"
+#import "ItemsOutlineLeafNode.h"
+#import "AppGroupTreeNode.h"
 
 @implementation AssignTimeWindowController
 
@@ -22,10 +21,30 @@
 
 - (void)dealloc
 {
-  [self setItems:nil];
+  [self setItemsOutlineRootNode:nil];
   [self setCurrentDate:nil];
   [addProjectSheetController release];
   [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+  [self italicizeNoProjectMenuItemTitle];
+}
+
+- (void)italicizeNoProjectMenuItemTitle
+{
+  NSString *unassignTitle = [noProjectMenuItem title];
+  NSFont *italicFont = [NSFont fontWithName:@"Helvetica Oblique" size:13.0];
+  NSAttributedString *italicUnassignTitle = [[[NSMutableAttributedString alloc] initWithString: unassignTitle attributes:@{NSFontAttributeName: italicFont }] autorelease];
+  [noProjectMenuItem setAttributedTitle:italicUnassignTitle];
+}
+
+#pragma mark - NSSearchField
+
+- (IBAction)searchItems:(id)sender
+{
+//  [self filterItemsTreeContent];
 }
 
 #pragma mark - NSPopupButton
@@ -42,7 +61,7 @@
 
   [selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger row, BOOL *stop) {
     id item = [itemsOutlineView itemAtRow:row];
-    ItemsOutlineRowViewController *controller = [item representedObject];
+    id<ItemsOutlineTreeNode> controller = [item representedObject];
     [controller changeProjectTo:project];
   }];
 }
@@ -53,11 +72,6 @@
   [noProjectMenuItem retain];
   [separatorMenuItem retain];
   [newProjectMenuItem retain];
-
-  NSString *unassignTitle = [noProjectMenuItem title];
-  NSFont *italicFont = [NSFont fontWithName:@"Helvetica Oblique" size:9.0];
-  NSAttributedString *italicUnassignTitle = [[[NSMutableAttributedString alloc] initWithString: unassignTitle attributes:@{NSFontAttributeName: italicFont }] autorelease];
-  [noProjectMenuItem setAttributedTitle:italicUnassignTitle];
 
   [projectsMenu removeAllItems];
 
@@ -93,7 +107,7 @@
     [self setCurrentDate:[NSDate date]];
     [datePicker setDateValue:[self currentDate]];
   } else {
-    [self updateItemsTreeControllerContent];
+    [self updateItemsTreeContent];
   }
 }
 
@@ -105,7 +119,7 @@
 {
   if (*proposedDateValue) {
     [self setCurrentDate:*proposedDateValue];
-    [self updateItemsTreeControllerContent];
+    [self updateItemsTreeContent];
   } else {
     *proposedDateValue = [self currentDate];
   }
@@ -118,7 +132,7 @@
   NSString *identifier = [tableColumn identifier];
 
   if ([identifier isEqualToString:@"Name"]) {
-    ItemsOutlineRowViewController *rowViewController = [item representedObject];
+    id <ItemsOutlineTreeNode> rowViewController = [item representedObject];
     identifier = [rowViewController viewIdentifierForNameColumn];
   }
 
@@ -127,18 +141,23 @@
 
 #pragma mark - itemsTreeController
 
-- (void)updateItemsTreeControllerContent
+- (void)updateItemsTreeDisplayedContent
 {
-  NSArray *appGroups = [[context items] appGroupsForDay:[self currentDate]];
+//  NSString *query = [searchField stringValue];
+//  NSArray *itemsMatchingQuery = [self items];
+//  [self setDisplayItems:itemsMatchingQuery];
+}
 
-  NSMutableArray *controllers = [NSMutableArray arrayWithCapacity:[appGroups count]];
-  for (AppGroup *appGroup in appGroups) {
-    AppGroupViewController *controller = [[AppGroupViewController alloc] initWithItem:appGroup];
-    [controllers addObject:controller];
-    [controller release];
-  }
+- (void)updateItemsTreeContent
+{
+  NSArray *items = [[context items] itemsForDay:[self currentDate]];
 
-  [self setItems:controllers];
+  ItemsOutlineRootNode *root = [[ItemsOutlineRootNode alloc] init];
+  [root addItems:items];
+  [root sort];
+
+  [self setItemsOutlineRootNode:root];
+  [root release];
 }
 
 #pragma mark - addProjectSheetController

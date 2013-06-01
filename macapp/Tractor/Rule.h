@@ -14,5 +14,6 @@
 - (void)setPredicate:(NSPredicate *)predicate;
 
 - (NSPredicate *)expandedPredicate:(NSArray *)keyPaths;
++ (NSPredicate *)expandPredicate:(NSPredicate *)predicate withKeyPaths:(NSArray *)keyPaths;
 
 @end

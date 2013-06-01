@@ -1,5 +1,4 @@
 #import "Items.h"
-#import "AppGroup.h"
 #import "Item.h"
 #import "NSDate+DayExtensions.h"
 
@@ -41,13 +40,6 @@
   [request sortBy:@"start" ascending:NO];
   return [request all];
 }
-
-- (NSArray *)appGroupsForDay:(NSDate *)date
-{
-  NSArray *items = [self itemsForDay:date];
-  return [AppGroup appGroupsFromItems:items];
-}
-
 
 # pragma mark - JSON methods
 
